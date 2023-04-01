@@ -1,15 +1,18 @@
-import { theme } from './src/styles/themes';
-import { Box, NativeBaseProvider } from 'native-base';
+import { StatusBar } from 'expo-status-bar';
+import { View, Text } from 'react-native';
+import { ThemeProvider } from 'styled-components';
+import theme from './src/styles/theme';
+
 
 export default function App() {
   return (
-    <NativeBaseProvider theme={theme}>
-      <Box
-        flex='1'
-        bg={theme.colors.primary[100]}
-      >
-
-      </Box>
-    </NativeBaseProvider>
+    <ThemeProvider theme={theme}>
+      <View >
+        <Text>Open up App.tsx to start working on your app!</Text>
+        <StatusBar style="auto" />
+      </View>
+    </ThemeProvider>
   );
 }
+
+

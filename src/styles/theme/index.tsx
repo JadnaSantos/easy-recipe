@@ -1,7 +1,4 @@
-import { extendTheme } from "native-base";
-
-export const theme = extendTheme({
-
+export default {
   colors: {
     primary: {
       10: '#28303F',
@@ -19,5 +16,5 @@ export const theme = extendTheme({
       50: '#4B4CED',
       100: '#4E4AF2'
     }
-  },
-});
+  }
+}
