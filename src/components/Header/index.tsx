@@ -1,14 +1,29 @@
-import * as S from './styles'
+import * as S from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from '@expo/vector-icons'
 
-function Header() {
+
+
+type Props = {
+  showBackButton?: boolean;
+}
+
+export function Header({ showBackButton = false }: Props) {
+
+  const navigation = useNavigation()
+
+  function handleGoBack() {
+    navigation.navigate('home')
+  }
+
   return (
     <S.Container>
-      <S.Content>
-        <S.Title>Receita Fácil!</S.Title>
-        <S.SubTitle>Encontra a receita que combina com você</S.SubTitle>
-      </S.Content>
+      {
+        showBackButton &&
+        <S.BackButton onPress={handleGoBack}>
+          <Ionicons name='arrow-back-outline' color='#ffffff' />
+        </S.BackButton>
+      }
     </S.Container>
   )
 }
-
-export { Header }
