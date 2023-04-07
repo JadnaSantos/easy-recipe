@@ -1,11 +1,15 @@
-import theme from './src/styles/theme';
+import { Routes } from './src/routes';
 import { StatusBar } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import { NavigationContainer } from '@react-navigation/native';
-import { Routes } from './src/routes';
+import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
+import { Loading } from './src/components/Loading';
+import theme from './src/theme';
 
 
 export default function App() {
+  const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
+
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
@@ -14,7 +18,8 @@ export default function App() {
           barStyle="light-content"
           translucent={false}
         />
-        <Routes />
+
+        {fontsLoaded ? <Routes /> : <Loading />}
       </NavigationContainer>
     </ThemeProvider >
   );

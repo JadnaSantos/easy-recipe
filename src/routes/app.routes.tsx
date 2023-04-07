@@ -48,7 +48,6 @@ export function AppRoutes() {
           }
         }}
       />
-      <Tab.Screen name="Favorite" component={Favorite} />
     </Tab.Navigator>
   )
 }

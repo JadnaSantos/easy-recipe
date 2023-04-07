@@ -1,14 +1,14 @@
-import { Input } from '../../components/Input';
-import * as S from './styles';
-import { useForm, Controller } from 'react-hook-form';
 import * as zod from 'zod';
-import { zodResolver } from "@hookform/resolvers/zod";
+import * as S from './styles';
 import { AppError } from '../../utils/AppError';
-import { Ionicons } from '@expo/vector-icons'
-import { TouchableOpacity, View } from 'react-native';
-import { Button } from '../../components/Button';
-import { ButtonIcon } from '../../components/ButtonIcon';
+import { zodResolver } from "@hookform/resolvers/zod";
 
+import { useForm, Controller } from 'react-hook-form';
+import { Highlight } from '../../components/Highlight';
+import { Input } from '../../components/Input';
+import { ButtonIcon } from '../../components/ButtonIcon';
+import { TextInput } from 'react-native-gesture-handler';
+import { useRef } from 'react';
 
 const FormValidationSignupSchema = zod.object({
   recipe: zod.string().email(),
@@ -16,13 +16,14 @@ const FormValidationSignupSchema = zod.object({
 
 type SchemaFields = zod.infer<typeof FormValidationSignupSchema>
 
-
 function Home() {
+
+  const newPlayerNameInputRef = useRef<TextInput>(null);
+
 
   const FormValidation = useForm<SchemaFields>({
     resolver: zodResolver(FormValidationSignupSchema)
   })
-
 
   const { handleSubmit, reset, control } = FormValidation
 
@@ -41,13 +42,12 @@ function Home() {
     }
   }
 
-
   return (
     <S.Container>
-      <S.Content>
-        <S.Logo source={require('../../../assets/logo.png')} />
-        <S.SubTitle>Encontra a receita que combina com você</S.SubTitle>
-      </S.Content>
+      <S.Logo source={require('../../../assets/logo.png')} />
+      <Highlight
+        subtitle='Encontra a receita que combina com você'
+      />
 
 
       <S.Form>
@@ -57,20 +57,20 @@ function Home() {
           rules={{ required: 'Informe o e-mail' }}
           render={({ field: { value, onChange } }) => (
             <Input
-              placeholder="Digite o nome da comida"
-              autoCorrect={false}
-              autoCapitalize='none'
-              returnKeyType='next'
+              inputRef={newPlayerNameInputRef}
+              placeholder="Digite o nome da receita"
               value={value}
+              autoCorrect={false}
+              returnKeyType="done"
               onChangeText={onChange}
             />
           )}
         />
-        <ButtonIcon onPress={handleSubmit(onSubmit)} name='search' />
+        <ButtonIcon
+          onPress={handleSubmit(onSubmit)}
+          icon="search"
+        />
       </S.Form>
-
-
-
     </S.Container >
   );
 }
