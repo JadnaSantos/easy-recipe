@@ -2,7 +2,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home } from '../screens/Home';
 
 import { DetailsRecipe } from '../screens/DetailsRecipe';
-import { Favorite } from '../screens/Favorites';
 
 import { Ionicons } from '@expo/vector-icons'
 
