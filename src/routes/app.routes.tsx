@@ -1,9 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home } from '../screens/Home';
 
-import { DetailsRecipe } from '../screens/DetailsRecipe';
-
 import { Ionicons } from '@expo/vector-icons'
+import { Favorite } from '../screens/Favorites';
 
 
 const Tab = createBottomTabNavigator();
@@ -37,8 +36,8 @@ export function AppRoutes() {
         }}
       />
       <Tab.Screen
-        name="DetailsRecipe"
-        component={DetailsRecipe}
+        name="Favorite"
+        component={Favorite}
         options={{
           tabBarIcon: ({ color, size, focused }) => {
             return focused
